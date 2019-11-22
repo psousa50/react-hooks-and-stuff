@@ -1,8 +1,8 @@
 import React from "react"
-import { useFetchTodos } from "./api/hooks"
+import { useFetchToDos } from "../api/hooks"
 
 export const Home: React.FC = () => {
-  const { toDos, loading, error } = useFetchTodos()
+  const { toDos, loading, error } = useFetchToDos()
 
   return error ? (
     <div>{`Error: ${error}`}</div>

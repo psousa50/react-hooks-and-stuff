@@ -1,13 +1,13 @@
 import { useContext, useEffect } from "react"
 import { EnvironmentContext } from "../Environment"
 import { useDispatch, useSelector } from "react-redux"
-import { onGetTodosStart, onGetTodosError, onGetTodosSuccess } from "../state/todSlice"
+import { onGetTodosStart, onGetTodosError, onGetTodosSuccess } from "../state/toDosSlice"
 import { pipe } from "fp-ts/lib/pipeable"
 import { task } from "fp-ts/lib/Task"
 import { RootState } from "../state/rootReducer"
 import { fold } from "fp-ts/lib/TaskEither"
 
-export const useFetchTodos = () => {
+export const useFetchToDos = () => {
   const { toDoApi } = useContext(EnvironmentContext)
   const dispatch = useDispatch()
 

@@ -1,6 +1,6 @@
 import { pipe } from "fp-ts/lib/pipeable"
 import axios, { AxiosResponse } from "axios"
-import { ActionResult, toAction, actionOf, actionErrorOf } from "./actions"
+import { ActionResult, toAction, actionOf, actionErrorOf } from "../common/actions"
 import { chain, map } from "fp-ts/lib/TaskEither"
 
 export interface ToDo {

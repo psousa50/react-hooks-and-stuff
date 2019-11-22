@@ -1,12 +1,12 @@
 import "@testing-library/jest-dom/extend-expect"
 import React, { ComponentType } from "react"
 import { render, wait } from "@testing-library/react"
-import { EnvironmentContext, Environment } from "./Environment"
+import { EnvironmentContext, Environment } from "../Environment"
 import { Home } from "./Home"
 import { Provider } from "react-redux"
-import { store } from "./state/store"
-import { ToDo } from "./api/api"
-import { actionOf, actionErrorOf } from "./api/actions"
+import { store } from "../state/store"
+import { ToDo } from "../api/domain"
+import { actionOf, actionErrorOf } from "../common/actions"
 
 const withEnvAndStore = <P extends {}>(Component: ComponentType<P>, env: Environment) => (props: P) => (
   <EnvironmentContext.Provider value={env}>
@@ -17,7 +17,7 @@ const withEnvAndStore = <P extends {}>(Component: ComponentType<P>, env: Environ
 )
 
 describe("Home", () => {
-  it("display all Todos", async () => {
+  it("display a list of all ToDos", async () => {
     const toDo1: ToDo = {
       id: 1,
       userId: 3,
@@ -31,11 +31,11 @@ describe("Home", () => {
       completed: false,
     }
 
-    const toDoApiForTest = {
+    const toDoApi = {
       getAll: () => actionOf([toDo1, toDo2]),
     }
     const env = {
-      toDoApi: toDoApiForTest,
+      toDoApi,
     } as any
 
     const WrappedHome = withEnvAndStore(Home, env)

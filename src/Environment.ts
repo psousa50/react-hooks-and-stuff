@@ -1,5 +1,5 @@
 import React from "react"
-import { toDoApi, ToDoApi } from "./api/api"
+import { toDoApi, ToDoApi } from "./api/domain"
 
 export interface Environment {
   toDoApi: ToDoApi

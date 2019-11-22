@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "redux-starter-kit"
-import { ToDo } from "../api/api"
+import { ToDo } from "../api/domain"
 
 interface ToDoState {
   toDos: ToDo[]
