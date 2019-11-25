@@ -15,7 +15,7 @@ export const Home: React.FC = () => {
       {toDos.map(todo => (
         <div key={todo.id}>
           <div>{todo.title}</div>
-          <Link to={"/todo"}>{"Show"}</Link>
+          <Link to={{ pathname: `/todo/${todo.id}` }}>{"Show"}</Link>
         </div>
       ))}
     </div>

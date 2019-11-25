@@ -6,4 +6,4 @@ export const createStore = () => configureStore({ reducer: rootReducer })
 
 export const store = createStore()
 
-export type AppThunk = ThunkAction<void, RootState, null, Action<string>>
+export type Store = typeof store

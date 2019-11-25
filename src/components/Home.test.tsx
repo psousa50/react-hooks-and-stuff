@@ -1,10 +1,11 @@
 import "@testing-library/jest-dom/extend-expect"
-import React, { ComponentType } from "react"
-import { render, wait, fireEvent } from "@testing-library/react"
+import React from "react"
+import { wait, fireEvent } from "@testing-library/react"
 import { Home } from "./Home"
 import { ToDo } from "../api/domain"
 import { actionOf, actionErrorOf } from "../common/actions"
-import { withEnvAndStore, withRouter as renderWithRouter } from "../test/helpers"
+import { renderWithTestWrapper } from "../test/helpers"
+import { act } from "react-dom/test-utils"
 
 describe("Home", () => {
   it("display a list of all ToDos", async () => {
@@ -24,12 +25,11 @@ describe("Home", () => {
     const toDoApiStub = {
       getAll: () => actionOf([toDo1, toDo2]),
     }
-    const env = {
+    const environment = {
       toDoApi: toDoApiStub,
     } as any
 
-    const WrappedHome = withEnvAndStore(Home, env)
-    const { getByText } = renderWithRouter(<WrappedHome />)
+    const { getByText } = renderWithTestWrapper(<Home />, { environment })
 
     expect(getByText("Loading...")).toBeInTheDocument()
 
@@ -42,12 +42,11 @@ describe("Home", () => {
     const toDoApiStub = {
       getAll: () => actionErrorOf(new Error(errMsg)),
     }
-    const env = {
+    const environment = {
       toDoApi: toDoApiStub,
     } as any
 
-    const WrappedHome = withEnvAndStore(Home, env)
-    const { getByText } = renderWithRouter(<WrappedHome />)
+    const { getByText } = renderWithTestWrapper(<Home />, { environment })
 
     await wait(() => getByText(RegExp(errMsg)))
   })
@@ -63,16 +62,21 @@ describe("Home", () => {
     const toDoApiStub = {
       getAll: () => actionOf([toDo]),
     }
-    const env = {
+    const environment = {
       toDoApi: toDoApiStub,
     } as any
-    const WrappedHome = withEnvAndStore(Home, env)
-    const { getByText, history } = renderWithRouter(<WrappedHome />)
+    const { getByText, history } = renderWithTestWrapper(<Home />, {
+      environment,
+      route: `/todo/${toDo.id}`,
+      path: "/todo/:id",
+    })
 
     await wait(() => getByText("Some Title"))
 
-    fireEvent.click(getByText(/Show/i))
+    act(() => {
+      fireEvent.click(getByText(/Show/i))
+    })
 
-    expect(history.location.pathname).toBe("/todo")
+    expect(history.location.pathname).toBe(`/todo/${toDo.id}`)
   })
 })

@@ -6,12 +6,12 @@ import { Provider } from "react-redux"
 import { store } from "../state/store"
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom"
 
-const App: React.FC = () => (
+export const App: React.FC = () => (
   <EnvironmentContext.Provider value={environment}>
     <Provider store={store}>
       <Router>
         <Switch>
-          <Route path="/todo">
+          <Route path="/todo/:id">
             <ToDo />
           </Route>
           <Route path="/">
@@ -22,5 +22,3 @@ const App: React.FC = () => (
     </Provider>
   </EnvironmentContext.Provider>
 )
-
-export default App
