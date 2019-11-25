@@ -1,6 +1,5 @@
 import axios from "axios"
 import { toDoApi } from "./domain"
-import { actionOf } from "../common/actions"
 import { right, left } from "fp-ts/lib/Either"
 
 jest.mock("axios")
