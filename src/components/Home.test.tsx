@@ -1,20 +1,10 @@
 import "@testing-library/jest-dom/extend-expect"
 import React, { ComponentType } from "react"
-import { render, wait } from "@testing-library/react"
-import { EnvironmentContext, Environment } from "../Environment"
+import { render, wait, fireEvent } from "@testing-library/react"
 import { Home } from "./Home"
-import { Provider } from "react-redux"
-import { store } from "../state/store"
 import { ToDo } from "../api/domain"
 import { actionOf, actionErrorOf } from "../common/actions"
-
-const withEnvAndStore = <P extends {}>(Component: ComponentType<P>, env: Environment) => (props: P) => (
-  <EnvironmentContext.Provider value={env}>
-    <Provider store={store}>
-      <Component {...props} />
-    </Provider>
-  </EnvironmentContext.Provider>
-)
+import { withEnvAndStore, withRouter as renderWithRouter } from "../test/helpers"
 
 describe("Home", () => {
   it("display a list of all ToDos", async () => {
@@ -39,7 +29,7 @@ describe("Home", () => {
     } as any
 
     const WrappedHome = withEnvAndStore(Home, env)
-    const { getByText } = render(<WrappedHome />)
+    const { getByText } = renderWithRouter(<WrappedHome />)
 
     expect(getByText("Loading...")).toBeInTheDocument()
 
@@ -57,8 +47,32 @@ describe("Home", () => {
     } as any
 
     const WrappedHome = withEnvAndStore(Home, env)
-    const { getByText } = render(<WrappedHome />)
+    const { getByText } = renderWithRouter(<WrappedHome />)
 
     await wait(() => getByText(RegExp(errMsg)))
+  })
+
+  it("Redirects to ToDo page when a ToDo is clicked", async () => {
+    const toDo: ToDo = {
+      id: 1,
+      userId: 3,
+      title: "Some Title",
+      completed: false,
+    }
+
+    const toDoApiStub = {
+      getAll: () => actionOf([toDo]),
+    }
+    const env = {
+      toDoApi: toDoApiStub,
+    } as any
+    const WrappedHome = withEnvAndStore(Home, env)
+    const { getByText, history } = renderWithRouter(<WrappedHome />)
+
+    await wait(() => getByText("Some Title"))
+
+    fireEvent.click(getByText(/Show/i))
+
+    expect(history.location.pathname).toBe("/todo")
   })
 })

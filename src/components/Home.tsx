@@ -1,5 +1,6 @@
 import React from "react"
 import { useFetchToDos } from "../api/hooks"
+import { Link } from "react-router-dom"
 
 export const Home: React.FC = () => {
   const { toDos, loading, error } = useFetchToDos()
@@ -14,6 +15,7 @@ export const Home: React.FC = () => {
       {toDos.map(todo => (
         <div key={todo.id}>
           <div>{todo.title}</div>
+          <Link to={"/todo"}>{"Show"}</Link>
         </div>
       ))}
     </div>
