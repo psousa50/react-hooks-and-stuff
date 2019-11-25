@@ -31,11 +31,11 @@ describe("Home", () => {
       completed: false,
     }
 
-    const toDoApi = {
+    const toDoApiStub = {
       getAll: () => actionOf([toDo1, toDo2]),
     }
     const env = {
-      toDoApi,
+      toDoApi: toDoApiStub,
     } as any
 
     const WrappedHome = withEnvAndStore(Home, env)
@@ -49,11 +49,11 @@ describe("Home", () => {
 
   it("display an error message on failing to fetch ToDos", async () => {
     const errMsg = "some error"
-    const toDoApiForTest = {
+    const toDoApiStub = {
       getAll: () => actionErrorOf(new Error(errMsg)),
     }
     const env = {
-      toDoApi: toDoApiForTest,
+      toDoApi: toDoApiStub,
     } as any
 
     const WrappedHome = withEnvAndStore(Home, env)

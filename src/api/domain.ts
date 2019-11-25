@@ -10,8 +10,9 @@ export interface ToDo {
   completed: boolean
 }
 
-const mapResponse = <T>(response: AxiosResponse<T>): ActionResult<T> =>
-  response.status < 300 ? actionOf(response.data) : actionErrorOf(new Error(response.statusText))
+const mapResponse = <T>(response: AxiosResponse<T>): ActionResult<T> => {
+  return response.status < 300 ? actionOf(response.data) : actionErrorOf(new Error(response.statusText))
+}
 
 export interface ToDoApi {
   getOne: (id: number) => ActionResult<ToDo>
