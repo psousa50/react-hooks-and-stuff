@@ -6,7 +6,7 @@ import { wait } from "@testing-library/react"
 import { renderWithTestWrapper } from "../test/helpers"
 
 describe("ToDo", () => {
-  it("Render a ToDo", async () => {
+  it("Renders a ToDo", async () => {
     const toDo = {
       id: 1,
       userId: 3,
@@ -27,6 +27,6 @@ describe("ToDo", () => {
 
     expect(getByText("Loading...")).toBeInTheDocument()
 
-    await wait(() => expect(getByText("Some Title")).toBeDefined())
+    await wait(() => expect(getByText("Some Title")).toBeInTheDocument())
   })
 })

@@ -1,6 +1,5 @@
-import { configureStore, Action } from "redux-starter-kit"
-import { ThunkAction } from "redux-thunk"
-import { rootReducer, RootState } from "./rootReducer"
+import { configureStore } from "redux-starter-kit"
+import { rootReducer } from "./rootReducer"
 
 export const createStore = () => configureStore({ reducer: rootReducer })
 

@@ -11,7 +11,7 @@ export const ToDo: React.FC = () => {
     <div>{"Loading..."}</div>
   ) : (
     <div>
-      <div>{"ToDo"}</div>
+      <h2>{"ToDo"}</h2>
       <div>{toDo.title}</div>
     </div>
   )

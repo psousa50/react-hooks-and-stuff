@@ -16,7 +16,7 @@ const initialState: ToDoState = {
 }
 
 const toDoSlice = createSlice({
-  name: "ToDo",
+  name: "ToDos",
   initialState,
   reducers: {
     onGetToDosStart: state => {
