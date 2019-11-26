@@ -1,22 +1,7 @@
 {
-  "name": "env-context",
+  "name": "react-hooks-and-stuff-client",
   "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "@reduxjs/toolkit": "^1.0.4",
-    "@types/jest": "24.0.23",
-    "@types/node": "12.12.11",
-    "@types/react": "16.9.11",
-    "@types/react-dom": "16.9.4",
-    "axios": "^0.19.0",
-    "fp-ts": "^2.1.2",
-    "react": "^16.12.0",
-    "react-dom": "^16.12.0",
-    "react-redux": "^7.1.3",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "3.2.0",
-    "typescript": "3.7.2"
-  },
+  "description": "Some experiments with React Hooks, Context and Redux",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -37,6 +22,21 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^1.0.4",
+    "@types/jest": "24.0.23",
+    "@types/node": "12.12.11",
+    "@types/react": "16.9.11",
+    "@types/react-dom": "16.9.4",
+    "axios": "^0.19.0",
+    "fp-ts": "^2.1.2",
+    "react": "^16.12.0",
+    "react-dom": "^16.12.0",
+    "react-redux": "^7.1.3",
+    "react-router-dom": "^5.1.2",
+    "react-scripts": "3.2.0",
+    "typescript": "3.7.2"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^4.2.4",
