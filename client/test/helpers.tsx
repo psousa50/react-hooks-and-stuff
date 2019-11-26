@@ -1,11 +1,11 @@
 import React from "react"
-import { EnvironmentContext, Environment } from "../Environment"
 import { Provider } from "react-redux"
-import { createStore, Store } from "../state/store"
+import { createStore, Store } from "../src/state/store"
 import { render } from "@testing-library/react"
 import { createMemoryHistory, History } from "history"
 import { Router, Route } from "react-router-dom"
-import { actionOf } from "../common/actions"
+import { actionOf } from "../src/common/actions"
+import { Environment, EnvironmentContext } from "../src/Environment"
 
 const defaultEnvironment = {
   toDoApi: {
