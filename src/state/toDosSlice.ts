@@ -1,4 +1,4 @@
-import { createSlice, PayloadAction } from "redux-starter-kit"
+import { createSlice, PayloadAction } from "@reduxjs/toolkit"
 import { ToDo } from "../api/domain"
 
 interface ToDoState {

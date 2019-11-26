@@ -1,4 +1,4 @@
-import { combineReducers } from "redux-starter-kit"
+import { combineReducers } from "@reduxjs/toolkit"
 import { reducer as toDosReducer } from "./toDosSlice"
 
 export const rootReducer = combineReducers({ toDos: toDosReducer })
