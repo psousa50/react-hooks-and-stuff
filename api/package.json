@@ -1,0 +1,43 @@
+{
+  "name": "react-hooks-and-stuff-api",
+  "version": "0.1.0",
+  "description": "Some experiments with React Hooks, Context and Redux",
+  "main": "dist/index.js",
+  "scripts": {
+    "prebuild": "npm run clean && npm run lint",
+    "postbuild": "npm test",
+    "build": "npm run tsc",
+    "tsc": "tsc --project tsconfig.dist.json",
+    "clean": "rm -rf dist",
+    "lint": "tslint --project tsconfig.json",
+    "dev": "nodemon --exec 'ts-node --files' ./src/index.ts",
+    "start-mongo": "docker run -d -p 27017:27017 -v ~/Work/Projects/agendar-cc/agendar-cc-backend/data/mongo:/data/db mongo",
+    "start": "NODE_ENV=production node dist/index.js",
+    "test": "jest --testPathPattern=test/.+\\.spec\\.ts",
+    "test:watch": "npm test -- --watch"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "convict": "^5.2.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "fp-ts": "^2.2.0",
+    "mongodb": "^3.3.4",
+    "node": "^13.1.0"
+  },
+  "devDependencies": {
+    "@types/axios": "^0.14.0",
+    "@types/convict": "^4.2.1",
+    "@types/dotenv": "^8.2.0",
+    "@types/express": "^4.17.2",
+    "@types/jest": "^24.0.23",
+    "@types/mongodb": "^3.3.11",
+    "@types/node": "^12.12.14",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.2.0",
+    "ts-lint": "^4.5.1",
+    "tslint": "^5.20.1",
+    "typescript": "^3.7.2",
+    "typescript-tslint-plugin": "^0.5.5"
+  }
+}
