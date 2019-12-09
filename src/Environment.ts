@@ -5,7 +5,7 @@ export interface Environment {
   toDoApi: ToDoApi
 }
 
-export const environment = {
+export const environment: Environment = {
   toDoApi,
 }
 
